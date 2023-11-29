@@ -8,5 +8,6 @@ namespace CarCrudDominio.Repositorios
         Task Alterar(Carro carro);
         List<Carro> Listar();
         Carro BuscarId(long id);
+        Task Deletar(long Id);
     }
 }

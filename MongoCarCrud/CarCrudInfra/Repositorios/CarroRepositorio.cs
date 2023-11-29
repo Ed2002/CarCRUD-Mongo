@@ -85,5 +85,19 @@ namespace CarCrudInfra.Repositorios
                 throw new Exception($"Erro ao Buscar um Carro {ex.Message}");
             }
         }
+
+        public async Task Deletar(long Id)
+        {
+            try
+            {
+                var filtro = Builders<Carro>.Filter.Eq(x => x.Id, Id);
+
+                await Connection.DeleteOneAsync(filtro);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Erro ao Buscar um Modelo {ex.Message}");
+            }
+        }
     }
 }

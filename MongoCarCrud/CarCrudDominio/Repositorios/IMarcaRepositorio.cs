@@ -6,6 +6,7 @@ namespace CarCrudDominio.Repositorios
     {
         Task Inserir(Marca marca);
         Task Alterar(Marca marca);
+        Task Deletar(long Id);
         List<Marca> Listar();
         Marca BuscarId(long Id);
     }
