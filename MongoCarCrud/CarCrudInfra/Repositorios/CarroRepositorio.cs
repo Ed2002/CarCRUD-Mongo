@@ -26,7 +26,12 @@ namespace CarCrudInfra.Repositorios
                 await Connection.InsertOneAsync(new()
                 {
                     Id = (maxDoc?.Id ?? 0) + 1,
-                    Nome = carro.Nome
+                    Nome = carro.Nome,
+                    Placa = carro.Placa,
+                    Renavam = carro.Renavam,
+                    Valor = carro.Valor,
+                    IdModelo = carro.IdModelo,
+                    Ano = carro.Ano
                 });
             }
             catch (Exception ex)
@@ -41,7 +46,13 @@ namespace CarCrudInfra.Repositorios
             {
                 var filtro = Builders<Carro>.Filter.Eq(x => x.Id, carro.Id);
 
-                var atualizacao = Builders<Carro>.Update.Set(x => x.Nome, carro.Nome);
+                var atualizacao = Builders<Carro>.Update
+                    .Set(x => x.Nome, carro.Nome)
+                    .Set(x => x.Placa, carro.Placa)
+                    .Set(x => x.Renavam, carro.Renavam)
+                    .Set(x => x.Valor, carro.Valor)
+                    .Set(x => x.Ano, carro.Ano)
+                    .Set(x => x.IdModelo, carro.IdModelo);
 
                 await Connection.UpdateOneAsync(filtro, atualizacao);
             }
@@ -72,6 +83,20 @@ namespace CarCrudInfra.Repositorios
             catch (Exception ex)
             {
                 throw new Exception($"Erro ao Buscar um Carro {ex.Message}");
+            }
+        }
+
+        public async Task Deletar(long Id)
+        {
+            try
+            {
+                var filtro = Builders<Carro>.Filter.Eq(x => x.Id, Id);
+
+                await Connection.DeleteOneAsync(filtro);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Erro ao Buscar um Modelo {ex.Message}");
             }
         }
     }

@@ -8,5 +8,6 @@ namespace CarCrudDominio.Repositorios
         Task Alterar(Modelo modelo);
         List<Modelo> Listar();
         Modelo BuscarId(long id);
+        Task Deletar(long Id);
     }
 }

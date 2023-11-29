@@ -3,6 +3,7 @@ using CarCrudDominio.Repositorios;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
+using System.Text.RegularExpressions;
 
 namespace CarCrudInfra.Repositorios
 {
@@ -72,6 +73,20 @@ namespace CarCrudInfra.Repositorios
             catch (Exception ex)
             {
                 throw new Exception($"Erro ao Buscar uma Marca {ex.Message}");
+            }
+        }
+
+        public async Task Deletar(long Id)
+        {
+            try
+            {
+                var filtro = Builders<Marca>.Filter.Eq(x => x.Id, Id);
+
+                await Connection.DeleteOneAsync(filtro);
+            }
+            catch(Exception ex)
+            {
+                throw new Exception($"Erro ao Deletar uma Marca {ex.Message}");
             }
         }
     }

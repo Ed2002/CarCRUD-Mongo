@@ -12,7 +12,7 @@ namespace CarCrudApi.Controllers
         private readonly InserirModeloHandler InserirModeloHandler;
         private readonly AlterarModeloHandler AlterarModeloHandler;
         private readonly BuscarIdModeloHandler BuscarIdModeloHandler;
-
+        private readonly DeletarModeloHandler DeletarModeloHandler;
 
         public ModeloController(IConfiguration configuration)
         {
@@ -20,6 +20,7 @@ namespace CarCrudApi.Controllers
             InserirModeloHandler = new InserirModeloHandler(configuration);
             BuscarIdModeloHandler = new BuscarIdModeloHandler(configuration);
             AlterarModeloHandler = new AlterarModeloHandler(configuration);
+            DeletarModeloHandler = new DeletarModeloHandler(configuration);
         }
 
         [HttpPost]
@@ -46,6 +47,13 @@ namespace CarCrudApi.Controllers
         public IActionResult Listar()
         {
             return Ok(ListarModeloHandler.Handle(new ListarModeloComando()));
+        }
+
+        [HttpDelete]
+        public IActionResult Deletar([FromQuery] DeletarModeloComando dados)
+        {
+            DeletarModeloHandler.Handle(dados);
+            return Ok();
         }
     }
 }

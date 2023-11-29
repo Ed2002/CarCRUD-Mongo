@@ -12,7 +12,7 @@ namespace CarCrudApi.Controllers
         private readonly InserirMarcaHandler InserirMarcaHandler;
         private readonly AlterarMarcaHandler AlterarMarcaHandler;
         private readonly BuscarIdMarcaHandler BuscarIdMarcaHandler;
-        
+        private readonly DeletarMarcaHandler DeletarMarcaHandler;
 
         public MarcaController(IConfiguration configuration)
         {
@@ -20,6 +20,7 @@ namespace CarCrudApi.Controllers
             InserirMarcaHandler = new InserirMarcaHandler(configuration);
             BuscarIdMarcaHandler = new BuscarIdMarcaHandler(configuration);
             AlterarMarcaHandler = new AlterarMarcaHandler(configuration);
+            DeletarMarcaHandler = new DeletarMarcaHandler(configuration);
         }
 
         [HttpPost]
@@ -46,6 +47,13 @@ namespace CarCrudApi.Controllers
         public IActionResult Listar() 
         {
             return Ok(ListarMarcaHandler.Handle(new ListarMarcaComando()));
+        }
+
+        [HttpDelete]
+        public IActionResult Delete([FromQuery] DeletarMarcaComando dados)
+        {
+            DeletarMarcaHandler.Handle(dados);
+            return Ok();
         }
     }
 }

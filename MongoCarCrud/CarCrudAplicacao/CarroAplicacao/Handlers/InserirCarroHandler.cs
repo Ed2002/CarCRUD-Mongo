@@ -21,7 +21,8 @@ namespace CarCrudAplicacao.CarroAplicacao.Handlers
                 Renavam = request.Renavam,
                 Placa = request.Placa,
                 Valor = request.Valor,
-                Ano = request.Ano,
+                Ano = request.Ano.Year.ToString(),
+                IdModelo = request.IdModelo
             });
         }
     }

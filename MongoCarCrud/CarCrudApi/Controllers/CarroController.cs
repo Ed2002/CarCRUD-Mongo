@@ -1,5 +1,6 @@
 ﻿using CarCrudAplicacao.CarroAplicacao.Comandos;
 using CarCrudAplicacao.CarroAplicacao.Handlers;
+using CarCrudAplicacao.MarcaAplicacao.Handlers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarCrudApi.Controllers
@@ -12,14 +13,15 @@ namespace CarCrudApi.Controllers
         private readonly InserirCarroHandler InserirCarroHandler;
         private readonly AlterarCarroHandler AlterarCarroHandler;
         private readonly BuscarIdCarroHandler BuscarIdCarroHandler;
-
+        private readonly DeletarCarroHandler DeletarCarroHandler;
 
         public CarroController(IConfiguration configuration)
         {
             ListarCarroHandler = new ListarCarroHandler(configuration);
-            InserirMCarroHandler = new InserirCarroHandler(configuration);
-            BuscarIdMCarroHandler = new BuscarIdCarroHandler(configuration);
+            InserirCarroHandler = new InserirCarroHandler(configuration);
+            BuscarIdCarroHandler = new BuscarIdCarroHandler(configuration);
             AlterarCarroHandler = new AlterarCarroHandler(configuration);
+            DeletarCarroHandler = new DeletarCarroHandler(configuration);
         }
 
         [HttpPost]
@@ -46,6 +48,13 @@ namespace CarCrudApi.Controllers
         public IActionResult Listar()
         {
             return Ok(ListarCarroHandler.Handle(new ListarCarroComando()));
+        }
+
+        [HttpDelete]
+        public IActionResult Delete([FromQuery] DeletarCarroComando dados)
+        {
+            DeletarCarroHandler.Handle(dados);
+            return Ok();
         }
     }
 }
