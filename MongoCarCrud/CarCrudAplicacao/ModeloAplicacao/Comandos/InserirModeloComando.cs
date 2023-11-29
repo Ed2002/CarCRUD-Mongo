@@ -6,5 +6,6 @@ namespace CarCrudAplicacao.ModeloAplicacao.Comandos
     {
         [Required(AllowEmptyStrings = false, ErrorMessage = "O nome é obrigatório")]
         public string Nome { get; set; } = string.Empty;
+        public long IdMarca { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CarCrudAplicacao.CarroAplicacao.Comandos;
 using CarCrudAplicacao.CarroAplicacao.Handlers;
+using CarCrudAplicacao.MarcaAplicacao.Handlers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarCrudApi.Controllers
@@ -17,8 +18,8 @@ namespace CarCrudApi.Controllers
         public CarroController(IConfiguration configuration)
         {
             ListarCarroHandler = new ListarCarroHandler(configuration);
-            InserirMCarroHandler = new InserirCarroHandler(configuration);
-            BuscarIdMCarroHandler = new BuscarIdCarroHandler(configuration);
+            InserirCarroHandler = new InserirCarroHandler(configuration);
+            BuscarIdCarroHandler = new BuscarIdCarroHandler(configuration);
             AlterarCarroHandler = new AlterarCarroHandler(configuration);
         }
 

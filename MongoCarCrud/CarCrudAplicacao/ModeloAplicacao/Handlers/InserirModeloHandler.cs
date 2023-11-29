@@ -18,6 +18,7 @@ namespace CarCrudAplicacao.ModeloAplicacao.Handlers
             await ModeloRepositorio.Inserir(new()
             {
                 Nome = request.Nome,
+                IdMarca = request.IdMarca,
             });
         }
     }
