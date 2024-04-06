@@ -9,4 +9,4 @@ no mongodb chamado `cardb` e dentro desta database criar as seguintes collection
 - marca
 - modelo
 
-depois de seguir estes passo basta apenas rodar o projeto
+depois de seguir estes passo basta apenas rodar o projeto.
